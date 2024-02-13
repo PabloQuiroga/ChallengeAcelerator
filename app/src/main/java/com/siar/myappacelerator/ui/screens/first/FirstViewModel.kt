@@ -1,6 +1,6 @@
 package com.siar.myappacelerator.ui.screens.first
 
-import android.util.Log
+import android.content.Context
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.siar.myappacelerator.data.model.UserModel
@@ -34,11 +34,8 @@ class FirstViewModel @Inject constructor(
 
             val result = usersUseCase()
 
-            if(!result.isNullOrEmpty()){
-
+            if(result.isNotEmpty()){
                 _usersList.value = result
-                Log.e("USERMODEL", usersList.value.toString())
-                //userModel.postValue(result[0])
             }
 
             _isLoading.value = false

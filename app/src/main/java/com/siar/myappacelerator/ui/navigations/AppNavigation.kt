@@ -1,6 +1,7 @@
 package com.siar.myappacelerator.ui.navigations
 
 import androidx.compose.runtime.Composable
+import androidx.hilt.navigation.compose.hiltViewModel
 import androidx.navigation.NavGraphBuilder
 import androidx.navigation.NavHostController
 import androidx.navigation.compose.NavHost
@@ -23,10 +24,8 @@ fun AppNavigation() {
         navController = navController,
         startDestination = AppScreens.FirstScreen.route
     ){
-
         addFirstScreen(navController)
-
-        addSecondScreen(navController)
+        addSecondScreen()
     }
 }
 
@@ -34,13 +33,15 @@ fun NavGraphBuilder.addFirstScreen(navController: NavHostController){
     composable(
         AppScreens.FirstScreen.route
     ){
-        FirstScreen{
-            navController.navigate(AppScreens.SecondScreen.createRoute("Daniel")) //TODO revisar esto
+        FirstScreen(
+            hiltViewModel()
+        ){
+            navigateToSecondScreen(navController, it)
         }
     }
 }
 
-fun NavGraphBuilder.addSecondScreen(navController: NavHostController){
+fun NavGraphBuilder.addSecondScreen(){
     composable(
         AppScreens.SecondScreen.route,
         arguments = listOf(
@@ -51,4 +52,8 @@ fun NavGraphBuilder.addSecondScreen(navController: NavHostController){
             it.arguments?.getString("name") ?: "nulo", //nulo is only for test
         )
     }
+}
+
+fun navigateToSecondScreen(navController: NavHostController, name: String){
+    navController.navigate(AppScreens.SecondScreen.createRoute(name))
 }

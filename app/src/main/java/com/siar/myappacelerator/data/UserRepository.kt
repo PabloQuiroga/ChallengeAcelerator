@@ -1,7 +1,6 @@
 package com.siar.myappacelerator.data
 
 import com.siar.myappacelerator.data.model.UserModel
-import com.siar.myappacelerator.data.model.UserProvider
 import com.siar.myappacelerator.data.network.MockService
 import javax.inject.Inject
 
@@ -15,9 +14,7 @@ class UserRepository @Inject constructor(
     private val api: MockService
 ){
 
-    suspend fun getAllUsers(): List<UserModel>?{
-        val response = api.getUsers()
-        UserProvider.users = response ?: emptyList()
-        return response
+    suspend fun getAllUsers(): List<UserModel>? {
+        return api.getUsers()
     }
 }
