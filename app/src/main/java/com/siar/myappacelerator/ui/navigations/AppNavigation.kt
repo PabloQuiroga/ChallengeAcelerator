@@ -49,6 +49,7 @@ fun NavGraphBuilder.addSecondScreen(){
         )
     ){
         SecondScreen(
+            hiltViewModel(),
             it.arguments?.getString("name") ?: "nulo", //nulo is only for test
         )
     }

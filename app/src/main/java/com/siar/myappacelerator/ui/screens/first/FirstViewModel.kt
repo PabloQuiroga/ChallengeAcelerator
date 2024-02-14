@@ -1,10 +1,10 @@
 package com.siar.myappacelerator.ui.screens.first
 
-import android.content.Context
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.siar.myappacelerator.data.model.UserModel
 import com.siar.myappacelerator.domain.GetUsersUseCase
+import com.siar.myappacelerator.domain.preferences.SetPreferencesNameValue
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.asStateFlow
@@ -19,7 +19,8 @@ import javax.inject.Inject
  *****/
 @HiltViewModel
 class FirstViewModel @Inject constructor(
-    private val usersUseCase: GetUsersUseCase
+    private val usersUseCase: GetUsersUseCase,
+    private val preferencesUseCase: SetPreferencesNameValue
 ): ViewModel() {
 
     private val _isLoading = MutableStateFlow(false)
@@ -36,6 +37,7 @@ class FirstViewModel @Inject constructor(
 
             if(result.isNotEmpty()){
                 _usersList.value = result
+                preferencesUseCase(_usersList.value[0].name)
             }
 
             _isLoading.value = false

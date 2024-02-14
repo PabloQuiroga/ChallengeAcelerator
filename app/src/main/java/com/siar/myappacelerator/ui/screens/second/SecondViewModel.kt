@@ -1,7 +1,12 @@
 package com.siar.myappacelerator.ui.screens.second
 
 import androidx.lifecycle.ViewModel
+import androidx.lifecycle.viewModelScope
+import com.siar.myappacelerator.domain.preferences.GetPreferencesNameValue
 import dagger.hilt.android.lifecycle.HiltViewModel
+import kotlinx.coroutines.flow.MutableStateFlow
+import kotlinx.coroutines.flow.asStateFlow
+import kotlinx.coroutines.launch
 import javax.inject.Inject
 
 /*****
@@ -13,4 +18,18 @@ import javax.inject.Inject
  *
  *****/
 @HiltViewModel
-class SecondViewModel @Inject constructor() : ViewModel()
+class SecondViewModel @Inject constructor(
+    private val preferencesName: GetPreferencesNameValue
+) : ViewModel(){
+
+    private val _userName = MutableStateFlow("")
+    val userName = _userName.asStateFlow()
+
+    init {
+        viewModelScope.launch {
+           preferencesName()?.let {
+               _userName.value = it
+           }
+        }
+    }
+}
