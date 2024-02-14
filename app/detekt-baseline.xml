@@ -1,0 +1,39 @@
+<?xml version="1.0" ?>
+<SmellBaseline>
+  <ManuallySuppressedIssues></ManuallySuppressedIssues>
+  <CurrentIssues>
+    <ID>EmptyClassBlock:AceleratorApp.kt$AceleratorApp${ }</ID>
+    <ID>FunctionNaming:AppNavigation.kt$@Composable fun AppNavigation()</ID>
+    <ID>FunctionNaming:FirstScreen.kt$@Composable fun FirstScreen( viewModel: FirstViewModel, onClick: (name: String) -&gt; Unit )</ID>
+    <ID>FunctionNaming:SecondScreen.kt$@Composable fun SecondScreen( name: String )</ID>
+    <ID>FunctionNaming:Theme.kt$@Composable fun MyAppAceleratorTheme( darkTheme: Boolean = isSystemInDarkTheme(), // Dynamic color is available on Android 12+ dynamicColor: Boolean = true, content: @Composable () -&gt; Unit )</ID>
+    <ID>MagicNumber:Color.kt$0xFF625b71</ID>
+    <ID>MagicNumber:Color.kt$0xFF6650a4</ID>
+    <ID>MagicNumber:Color.kt$0xFF7D5260</ID>
+    <ID>MagicNumber:Color.kt$0xFFCCC2DC</ID>
+    <ID>MagicNumber:Color.kt$0xFFD0BCFF</ID>
+    <ID>MagicNumber:Color.kt$0xFFEFB8C8</ID>
+    <ID>MagicNumber:GetUsersUseCase.kt$GetUsersUseCase$2000</ID>
+    <ID>MagicNumber:MainViewModel.kt$MainViewModel$2000L</ID>
+    <ID>NewLineAtEndOfFile:AceleratorApp.kt$com.siar.myappacelerator.core.AceleratorApp.kt</ID>
+    <ID>NewLineAtEndOfFile:AppNavigation.kt$com.siar.myappacelerator.ui.navigations.AppNavigation.kt</ID>
+    <ID>NewLineAtEndOfFile:AppScreens.kt$com.siar.myappacelerator.ui.navigations.AppScreens.kt</ID>
+    <ID>NewLineAtEndOfFile:Color.kt$com.siar.myappacelerator.ui.theme.Color.kt</ID>
+    <ID>NewLineAtEndOfFile:ExampleUnitTest.kt$com.siar.myappacelerator.ExampleUnitTest.kt</ID>
+    <ID>NewLineAtEndOfFile:FirstScreen.kt$com.siar.myappacelerator.ui.screens.first.FirstScreen.kt</ID>
+    <ID>NewLineAtEndOfFile:FirstViewModel.kt$com.siar.myappacelerator.ui.screens.first.FirstViewModel.kt</ID>
+    <ID>NewLineAtEndOfFile:GetUsersUseCase.kt$com.siar.myappacelerator.domain.GetUsersUseCase.kt</ID>
+    <ID>NewLineAtEndOfFile:MainActivity.kt$com.siar.myappacelerator.ui.MainActivity.kt</ID>
+    <ID>NewLineAtEndOfFile:MainViewModel.kt$com.siar.myappacelerator.ui.MainViewModel.kt</ID>
+    <ID>NewLineAtEndOfFile:MockClient.kt$com.siar.myappacelerator.data.network.MockClient.kt</ID>
+    <ID>NewLineAtEndOfFile:MockService.kt$com.siar.myappacelerator.data.network.MockService.kt</ID>
+    <ID>NewLineAtEndOfFile:NetworkModule.kt$com.siar.myappacelerator.core.NetworkModule.kt</ID>
+    <ID>NewLineAtEndOfFile:SecondScreen.kt$com.siar.myappacelerator.ui.screens.second.SecondScreen.kt</ID>
+    <ID>NewLineAtEndOfFile:SecondViewModel.kt$com.siar.myappacelerator.ui.screens.second.SecondViewModel.kt</ID>
+    <ID>NewLineAtEndOfFile:Theme.kt$com.siar.myappacelerator.ui.theme.Theme.kt</ID>
+    <ID>NewLineAtEndOfFile:Type.kt$com.siar.myappacelerator.ui.theme.Type.kt</ID>
+    <ID>NewLineAtEndOfFile:UserModel.kt$com.siar.myappacelerator.data.model.UserModel.kt</ID>
+    <ID>NewLineAtEndOfFile:UserRepository.kt$com.siar.myappacelerator.data.UserRepository.kt</ID>
+    <ID>WildcardImport:ExampleUnitTest.kt$import org.junit.Assert.*</ID>
+  </CurrentIssues>
+</SmellBaseline>
