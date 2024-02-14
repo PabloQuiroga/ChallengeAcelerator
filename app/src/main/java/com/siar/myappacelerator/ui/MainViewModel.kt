@@ -14,6 +14,7 @@ import javax.inject.Inject
  * Created by: Pablo Daniel Quiroga
  * Last update: 09/02/2024
  *****/
+@Suppress("MagicNumber") // Only for demo
 @HiltViewModel
 class MainViewModel @Inject constructor(): ViewModel() {
 

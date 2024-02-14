@@ -10,5 +10,4 @@ import dagger.hilt.android.HiltAndroidApp
  *
  *****/
 @HiltAndroidApp
-class AceleratorApp: Application() {
-}
+class AceleratorApp: Application()

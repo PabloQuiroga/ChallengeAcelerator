@@ -11,6 +11,7 @@ import javax.inject.Inject
  *
  * Last update: 10/02/2024
  *****/
+@Suppress("MagicNumber") // only for demo
 class GetUsersUseCase @Inject constructor(
     private val repository: UserRepository
 ) {
