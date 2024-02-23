@@ -14,8 +14,6 @@ import javax.inject.Inject
  * Last update: 14/02/2024
  *
  *****/
-//private const val PREFERENCES_NAME = "preferences_name"
-
 private val Context.dataStore by preferencesDataStore(name = PREFERENCES_NAME)
 
 class Preferences @Inject constructor(

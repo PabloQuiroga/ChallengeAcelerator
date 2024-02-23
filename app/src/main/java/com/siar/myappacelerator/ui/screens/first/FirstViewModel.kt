@@ -1,20 +1,23 @@
 package com.siar.myappacelerator.ui.screens.first
 
+import androidx.compose.runtime.getValue
+import androidx.compose.runtime.mutableStateOf
+import androidx.compose.runtime.setValue
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.siar.myappacelerator.data.model.UserModel
 import com.siar.myappacelerator.domain.GetUsersUseCase
 import com.siar.myappacelerator.domain.preferences.SetPreferencesNameValue
+import com.siar.myappacelerator.util.EMPTY_RESPONSE_MESSAGE
 import dagger.hilt.android.lifecycle.HiltViewModel
-import kotlinx.coroutines.flow.MutableStateFlow
-import kotlinx.coroutines.flow.asStateFlow
 import kotlinx.coroutines.launch
+import java.io.IOException
 import javax.inject.Inject
 
 /*****
  * Project: My App Acelerator
  * Created by: Pablo Daniel Quiroga
- * Last update: 12/02/2024
+ * Last update: 23/02/2024
  *
  *****/
 @HiltViewModel
@@ -22,25 +25,38 @@ class FirstViewModel @Inject constructor(
     private val usersUseCase: GetUsersUseCase,
     private val preferencesUseCase: SetPreferencesNameValue
 ): ViewModel() {
+    var uiState: FirstUiState by mutableStateOf(FirstUiState.Loading)
+        private set
 
-    private val _isLoading = MutableStateFlow(false)
-    val isLoading = _isLoading.asStateFlow()
+    init {
+        getUsersList()
+    }
 
-    private val _usersList = MutableStateFlow(listOf<UserModel>())
-    val usersList = _usersList.asStateFlow()
-
-    fun onTextClicked(){
+    private fun getUsersList(){
         viewModelScope.launch {
-            _isLoading.value = true
+            uiState = FirstUiState.Loading
 
-            val result = usersUseCase()
+            uiState = try {
+                val result = usersUseCase()
 
-            if(result.isNotEmpty()){
-                _usersList.value = result
-                preferencesUseCase(_usersList.value[0].name)
+                if (result.isNotEmpty()){
+                    setDataResult(result)
+                } else {
+                    FirstUiState.Error(setEmptyResult())
+                }
+            } catch (e: IOException){
+                FirstUiState.Error(e.message ?: e.toString())
             }
-
-            _isLoading.value = false
         }
     }
+
+    private suspend fun setDataResult(response: List<UserModel>): FirstUiState{
+        preferencesUseCase(response[0].name)
+        return FirstUiState.Success(response)
+    }
+
+    private fun setEmptyResult(): String{
+        return EMPTY_RESPONSE_MESSAGE
+    }
 }
+

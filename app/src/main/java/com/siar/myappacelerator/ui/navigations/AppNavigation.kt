@@ -9,13 +9,14 @@ import androidx.navigation.compose.composable
 import androidx.navigation.compose.rememberNavController
 import androidx.navigation.navArgument
 import com.siar.myappacelerator.ui.screens.first.FirstScreen
+import com.siar.myappacelerator.ui.screens.first.FirstViewModel
 import com.siar.myappacelerator.ui.screens.second.SecondScreen
 
 /*****
  * Project: My App Acelerator
  * Created by: Pablo Daniel Quiroga
  *
- * Last update: 09/02/2024
+ * Last update: 23/02/2024
  *****/
 @Composable
 fun AppNavigation() {
@@ -33,8 +34,9 @@ fun NavGraphBuilder.addFirstScreen(navController: NavHostController){
     composable(
         AppScreens.FirstScreen.route
     ){
+        val viewModel: FirstViewModel = hiltViewModel()
         FirstScreen(
-            hiltViewModel()
+            uiState = viewModel.uiState
         ){
             navigateToSecondScreen(navController, it)
         }

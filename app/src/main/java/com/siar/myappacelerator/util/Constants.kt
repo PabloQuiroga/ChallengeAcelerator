@@ -7,3 +7,4 @@ package com.siar.myappacelerator.util
  *
  *****/
 const val PREFERENCES_NAME = "preferences_name"
+const val EMPTY_RESPONSE_MESSAGE = "Error result: Empty response"
