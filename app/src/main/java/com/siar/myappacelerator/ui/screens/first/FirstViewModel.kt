@@ -5,8 +5,8 @@ import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.setValue
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
-import com.siar.myappacelerator.data.model.UserModel
 import com.siar.myappacelerator.domain.GetUsersUseCase
+import com.siar.myappacelerator.domain.model.User
 import com.siar.myappacelerator.domain.preferences.SetPreferencesNameValue
 import com.siar.myappacelerator.util.EMPTY_RESPONSE_MESSAGE
 import dagger.hilt.android.lifecycle.HiltViewModel
@@ -50,7 +50,7 @@ class FirstViewModel @Inject constructor(
         }
     }
 
-    private suspend fun setDataResult(response: List<UserModel>): FirstUiState{
+    private suspend fun setDataResult(response: List<User>): FirstUiState{
         preferencesUseCase(response[0].name)
         return FirstUiState.Success(response)
     }

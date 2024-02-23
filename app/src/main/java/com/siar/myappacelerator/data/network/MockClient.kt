@@ -1,6 +1,6 @@
 package com.siar.myappacelerator.data.network
 
-import com.siar.myappacelerator.data.model.UserModel
+import com.siar.myappacelerator.data.model.UserDto
 import retrofit2.Response
 import retrofit2.http.GET
 
@@ -13,5 +13,5 @@ import retrofit2.http.GET
 interface MockClient {
 
     @GET("users")
-    suspend fun getAllUsers(): Response<List<UserModel>>
+    suspend fun getAllUsers(): Response<List<UserDto>>
 }

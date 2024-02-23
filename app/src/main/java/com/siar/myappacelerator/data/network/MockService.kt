@@ -1,6 +1,6 @@
 package com.siar.myappacelerator.data.network
 
-import com.siar.myappacelerator.data.model.UserModel
+import com.siar.myappacelerator.data.model.UserDto
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.withContext
 import javax.inject.Inject
@@ -14,7 +14,7 @@ import javax.inject.Inject
 class MockService @Inject constructor(
     private val mockClient: MockClient
 ){
-    suspend fun getUsers(): List<UserModel>?{
+    suspend fun getUsers(): List<UserDto>?{
         return withContext(Dispatchers.IO){
             val response = mockClient.getAllUsers()
             response.body()

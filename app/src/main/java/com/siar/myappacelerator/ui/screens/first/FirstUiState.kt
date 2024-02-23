@@ -1,6 +1,6 @@
 package com.siar.myappacelerator.ui.screens.first
 
-import com.siar.myappacelerator.data.model.UserModel
+import com.siar.myappacelerator.domain.model.User
 
 /*****
  * Project: My App Acelerator
@@ -10,7 +10,7 @@ import com.siar.myappacelerator.data.model.UserModel
  *
  *****/
 sealed interface FirstUiState {
-    data class Success(val users: List<UserModel>) : FirstUiState
+    data class Success(val users: List<User>) : FirstUiState
     object Loading : FirstUiState
     data class Error(val error: String) : FirstUiState
 }

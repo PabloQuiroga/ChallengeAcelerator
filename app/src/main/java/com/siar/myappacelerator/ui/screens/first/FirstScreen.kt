@@ -17,7 +17,7 @@ import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import com.siar.myappacelerator.R
-import com.siar.myappacelerator.data.model.UserModel
+import com.siar.myappacelerator.domain.model.User
 
 /*****
  * Project: My App Acelerator
@@ -59,7 +59,7 @@ fun FirstScreen(
 
 @Composable
 fun ShowSuccessContent(
-    userList: List<UserModel>,
+    userList: List<User>,
     onClick: (name: String) -> Unit
 ){
     Text(

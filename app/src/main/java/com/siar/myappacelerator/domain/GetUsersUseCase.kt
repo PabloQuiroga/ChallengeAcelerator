@@ -1,7 +1,7 @@
 package com.siar.myappacelerator.domain
 
 import com.siar.myappacelerator.data.UserRepository
-import com.siar.myappacelerator.data.model.UserModel
+import com.siar.myappacelerator.domain.model.User
 import kotlinx.coroutines.delay
 import javax.inject.Inject
 
@@ -15,10 +15,9 @@ import javax.inject.Inject
 class GetUsersUseCase @Inject constructor(
     private val repository: UserRepository
 ) {
-    suspend operator fun invoke(): List<UserModel> {
-        delay(2000)
-        val usersList = repository.getAllUsers()
 
-        return usersList ?: emptyList()
+    suspend operator fun invoke(): List<User> {
+        delay(2000)
+        return repository.getAllUsersFromApi()
     }
 }

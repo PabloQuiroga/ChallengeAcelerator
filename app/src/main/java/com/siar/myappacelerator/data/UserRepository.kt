@@ -1,7 +1,8 @@
 package com.siar.myappacelerator.data
 
-import com.siar.myappacelerator.data.model.UserModel
+import com.siar.myappacelerator.data.database.dao.UserDao
 import com.siar.myappacelerator.data.network.MockService
+import com.siar.myappacelerator.domain.model.User
 import javax.inject.Inject
 
 /*****
@@ -10,11 +11,25 @@ import javax.inject.Inject
  *
  * Last update: 10/02/2024
  *****/
+@Suppress("UnusedPrivateProperty")
 class UserRepository @Inject constructor(
-    private val api: MockService
+    private val api: MockService,
+    private val userDao: UserDao
 ){
 
-    suspend fun getAllUsers(): List<UserModel>? {
-        return api.getUsers()
+    suspend fun getAllUsersFromApi(): List<User> {
+        return api.getUsers()?.map {
+            it.toDomain()
+        } ?: emptyList()
     }
+
+    /*
+
+    suspend fun getAllUsersFromDatabase(): List<User>? {
+        return userDao.getAllUsers().map {
+            it.toDomain()
+        }
+    }
+
+     */
 }
