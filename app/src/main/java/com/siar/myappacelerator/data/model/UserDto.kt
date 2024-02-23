@@ -67,11 +67,9 @@ data class CompanyDto (
     @SerializedName("name")
     var name: String,
     @SerializedName("catchPhrase")
-    var catchPhrase: String,
-    @SerializedName("bs")
-    var bs: String
+    var catchPhrase: String
 ){
     fun toDomain(): Company = Company(
-        name, catchPhrase, bs
+        name, catchPhrase
     )
 }

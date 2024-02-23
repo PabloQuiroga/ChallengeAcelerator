@@ -59,8 +59,8 @@ android {
 
 dependencies {
     val composeBomVersion = platform("androidx.compose:compose-bom:2023.08.00")
-    val hiltVersion = "2.46.1"
     val retrofitVersion = "2.9.0"
+    val roomVersion = "2.6.1"
 
     implementation("androidx.core:core-ktx:1.12.0")
     implementation("androidx.lifecycle:lifecycle-runtime-ktx:2.7.0")
@@ -72,25 +72,23 @@ dependencies {
     implementation("androidx.compose.ui:ui-graphics")
     implementation("androidx.compose.ui:ui-tooling-preview")
     implementation("androidx.compose.material3:material3")
-
     //navigation
     implementation("androidx.navigation:navigation-compose:2.7.7")
-
     //Hilt
-    implementation("com.google.dagger:hilt-android:$hiltVersion")
-    kapt("com.google.dagger:hilt-compiler:$hiltVersion")
+    implementation("com.google.dagger:hilt-android:2.50")
+    kapt("com.google.dagger:hilt-compiler:2.46.1")
     //Hilt navigation compose
-    implementation("androidx.hilt:hilt-navigation-compose:1.1.0")
-
+    implementation("androidx.hilt:hilt-navigation-compose:1.2.0")
     //retrofit
     implementation("com.squareup.retrofit2:retrofit:$retrofitVersion")
     implementation("com.squareup.retrofit2:converter-gson:$retrofitVersion")
-
     //splashScreen
     implementation("androidx.core:core-splashscreen:1.0.1")
-
     //DataStore
     implementation("androidx.datastore:datastore-preferences:1.0.0")
+    //Room
+    implementation("androidx.room:room-ktx:$roomVersion")
+    kapt("androidx.room:room-compiler:$roomVersion")
 
     testImplementation("junit:junit:4.13.2")
     androidTestImplementation("androidx.test.ext:junit:1.1.5")
