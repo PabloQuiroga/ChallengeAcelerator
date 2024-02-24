@@ -1,9 +1,6 @@
 package com.siar.myappacelerator.data.model
 
 import com.google.gson.annotations.SerializedName
-import com.siar.myappacelerator.domain.model.Address
-import com.siar.myappacelerator.domain.model.Company
-import com.siar.myappacelerator.domain.model.Geo
 import com.siar.myappacelerator.domain.model.User
 
 /*****
@@ -32,44 +29,5 @@ data class UserDto(
 ){
     fun toDomain(): User = User(
         id, name, username, email, address.toDomain(), phone, website, company.toDomain()
-    )
-}
-
-data class AddressDto (
-    @SerializedName("street")
-    var street: String,
-    @SerializedName("suite")
-    var suite: String,
-    @SerializedName("city")
-    var city: String,
-    @SerializedName("zipcode")
-    var zipcode: String,
-    @SerializedName("geo")
-    var geo: GeoDto
-){
-    fun toDomain(): Address = Address(
-        street, suite, city, zipcode, geo.toDomain()
-    )
-}
-
-data class GeoDto (
-    @SerializedName("lat")
-    var lat: String,
-    @SerializedName("lng")
-    var lng: String
-){
-    fun toDomain(): Geo = Geo(
-        lat, lng
-    )
-}
-
-data class CompanyDto (
-    @SerializedName("name")
-    var name: String,
-    @SerializedName("catchPhrase")
-    var catchPhrase: String
-){
-    fun toDomain(): Company = Company(
-        name, catchPhrase
     )
 }

@@ -3,6 +3,7 @@ package com.siar.myappacelerator.data.database.entities
 import androidx.room.ColumnInfo
 import androidx.room.Entity
 import androidx.room.PrimaryKey
+import com.siar.myappacelerator.domain.model.BasicUser
 
 /*****
  * Project: My App Acelerator
@@ -28,4 +29,8 @@ data class UserEntity(
 
     @ColumnInfo(name = "company_name")
     val company: String
-)
+){
+    fun toDomain(): BasicUser = BasicUser(
+        id, name, email, phone, company
+    )
+}
