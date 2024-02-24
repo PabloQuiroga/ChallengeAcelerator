@@ -1,4 +1,4 @@
-package com.siar.myappacelerator.domain
+package com.siar.myappacelerator.domain.usecases
 
 import com.siar.myappacelerator.data.UserRepository
 import com.siar.myappacelerator.domain.model.User
@@ -12,7 +12,7 @@ import javax.inject.Inject
  * Last update: 10/02/2024
  *****/
 @Suppress("MagicNumber") // only for demo
-class GetUsersUseCase @Inject constructor(
+class GetUsersFromApi @Inject constructor(
     private val repository: UserRepository
 ) {
 

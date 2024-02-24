@@ -5,9 +5,9 @@ import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.setValue
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
-import com.siar.myappacelerator.domain.GetUsersUseCase
+import com.siar.myappacelerator.domain.usecases.GetUsersFromApi
 import com.siar.myappacelerator.domain.model.User
-import com.siar.myappacelerator.domain.preferences.SetPreferencesNameValue
+import com.siar.myappacelerator.domain.usecases.SetNameToPreferences
 import com.siar.myappacelerator.util.EMPTY_RESPONSE_MESSAGE
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.launch
@@ -22,8 +22,8 @@ import javax.inject.Inject
  *****/
 @HiltViewModel
 class FirstViewModel @Inject constructor(
-    private val usersUseCase: GetUsersUseCase,
-    private val preferencesUseCase: SetPreferencesNameValue
+    private val usersUseCase: GetUsersFromApi,
+    private val preferencesUseCase: SetNameToPreferences
 ): ViewModel() {
     var uiState: FirstUiState by mutableStateOf(FirstUiState.Loading)
         private set

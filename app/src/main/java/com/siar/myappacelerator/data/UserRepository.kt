@@ -2,6 +2,7 @@ package com.siar.myappacelerator.data
 
 import com.siar.myappacelerator.data.database.dao.UserDao
 import com.siar.myappacelerator.data.network.MockService
+import com.siar.myappacelerator.domain.model.BasicUser
 import com.siar.myappacelerator.domain.model.User
 import javax.inject.Inject
 
@@ -23,13 +24,10 @@ class UserRepository @Inject constructor(
         } ?: emptyList()
     }
 
-    /*
 
-    suspend fun getAllUsersFromDatabase(): List<User>? {
+    suspend fun getAllUsersFromDatabase(): List<BasicUser> {
         return userDao.getAllUsers().map {
             it.toDomain()
         }
     }
-
-     */
 }

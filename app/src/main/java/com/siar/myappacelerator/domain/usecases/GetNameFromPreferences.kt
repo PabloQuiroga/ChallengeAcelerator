@@ -1,4 +1,4 @@
-package com.siar.myappacelerator.domain.preferences
+package com.siar.myappacelerator.domain.usecases
 
 import com.siar.myappacelerator.data.PreferencesRepository
 import javax.inject.Inject
@@ -9,7 +9,7 @@ import javax.inject.Inject
  * Last update: 14/02/2024
  *
  *****/
-class GetPreferencesNameValue @Inject constructor(
+class GetNameFromPreferences @Inject constructor(
     private val repository: PreferencesRepository
 ) {
     suspend operator fun invoke() = repository.getPreferencesName()

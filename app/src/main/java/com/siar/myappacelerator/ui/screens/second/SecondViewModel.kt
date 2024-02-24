@@ -2,7 +2,7 @@ package com.siar.myappacelerator.ui.screens.second
 
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
-import com.siar.myappacelerator.domain.preferences.GetPreferencesNameValue
+import com.siar.myappacelerator.domain.usecases.GetNameFromPreferences
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.asStateFlow
@@ -19,7 +19,7 @@ import javax.inject.Inject
  *****/
 @HiltViewModel
 class SecondViewModel @Inject constructor(
-    private val preferencesName: GetPreferencesNameValue
+    private val preferencesUseCase: GetNameFromPreferences
 ) : ViewModel(){
 
     private val _userName = MutableStateFlow("")
@@ -27,7 +27,7 @@ class SecondViewModel @Inject constructor(
 
     init {
         viewModelScope.launch {
-           preferencesName()?.let {
+           preferencesUseCase()?.let {
                _userName.value = it
            }
         }
