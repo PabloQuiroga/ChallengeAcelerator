@@ -30,4 +30,16 @@ class UserRepository @Inject constructor(
             it.toDomain()
         }
     }
+
+    suspend fun insertUserToDatabase(users: List<User>){
+        userDao.insertUser(
+            users.map {
+                it.toDatabase()
+            }
+        )
+    }
+
+    suspend fun clearDatabase(){
+        userDao.deteleData()
+    }
 }

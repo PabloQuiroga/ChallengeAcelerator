@@ -18,6 +18,9 @@ interface UserDao {
     @Query("SELECT * FROM user_table ORDER BY name DESC")
     suspend fun getAllUsers(): List<UserEntity>
 
-    @Insert(onConflict = OnConflictStrategy.REPLACE)
+    @Insert(onConflict = OnConflictStrategy.REPLACE) //reemplaza si encuentra conflictos
     suspend fun insertUser(users: List<UserEntity>)
+
+    @Query("DELETE FROM user_table")
+    suspend fun deteleData()
 }

@@ -1,5 +1,7 @@
 package com.siar.myappacelerator.domain.model
 
+import com.siar.myappacelerator.data.database.entities.UserEntity
+
 /*****
  * Project: My App Acelerator
  * Created by: Pablo Daniel Quiroga
@@ -15,4 +17,11 @@ data class User(
     val phone: String,
     val website: String,
     val company: Company
-)
+){
+    fun toDatabase(): UserEntity = UserEntity(
+        name = name,
+        email = email,
+        phone = phone,
+        company = company.name
+    )
+}
