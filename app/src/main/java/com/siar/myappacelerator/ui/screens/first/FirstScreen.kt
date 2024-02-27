@@ -1,23 +1,22 @@
 package com.siar.myappacelerator.ui.screens.first
 
-import androidx.compose.foundation.background
-import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.padding
+import androidx.compose.foundation.lazy.LazyColumn
+import androidx.compose.foundation.lazy.items
 import androidx.compose.material3.CircularProgressIndicator
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
-import androidx.compose.ui.res.colorResource
-import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.style.TextOverflow
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
-import com.siar.myappacelerator.R
 import com.siar.myappacelerator.domain.model.User
+import com.siar.myappacelerator.ui.components.UserCard
+import com.siar.myappacelerator.ui.theme.MyAppAceleratorTheme
 
 /*****
  * Project: My App Acelerator
@@ -31,12 +30,11 @@ import com.siar.myappacelerator.domain.model.User
 @Composable
 fun FirstScreen(
     uiState: FirstUiState,
-    onClick: (name: String) -> Unit
+    onItemClick: (User) -> Unit
 ) {
     Box(
         modifier = Modifier
-            .fillMaxSize()
-            .background(color = colorResource(id = R.color.teal_200)),
+            .fillMaxSize(),
         contentAlignment = Alignment.Center
     ) {
         when(uiState){
@@ -50,7 +48,7 @@ fun FirstScreen(
             is FirstUiState.Success -> {
                 ShowSuccessContent(
                     userList = uiState.users,
-                    onClick = onClick
+                    onItemClick = onItemClick
                 )
             }
         }
@@ -60,14 +58,16 @@ fun FirstScreen(
 @Composable
 fun ShowSuccessContent(
     userList: List<User>,
-    onClick: (name: String) -> Unit
+    onItemClick: (User) -> Unit
 ){
-    Text(
-        text = "Click me for navigation!",
-        fontSize = 18.sp,
-        fontWeight = FontWeight.Bold,
-        modifier = Modifier.clickable {
-            onClick(userList[0].name)
+    LazyColumn(
+        content = {
+            items(userList){
+                UserCard(
+                    user = it,
+                    onItemClick = onItemClick
+                )
+            }
         }
     )
 }
@@ -98,10 +98,13 @@ fun ShowError(message: String){
     }
 }
 
-@Preview(showBackground = true)
+@Preview(showSystemUi = true)
 @Composable
 fun ShowSuccessPreview(){
-    ShowSuccessContent(userList = emptyList(), onClick = {})
+    ShowSuccessContent(
+        userList = emptyList(),
+        onItemClick = {}
+    )
 }
 
 @Preview(showBackground = true)
@@ -113,5 +116,7 @@ fun ShowErrorPreview(){
 @Preview
 @Composable
 fun FirstScreenPreview(){
-    FirstScreen(uiState = FirstUiState.Loading){}
+    MyAppAceleratorTheme {
+        FirstScreen(uiState = FirstUiState.Loading){}
+    }
 }

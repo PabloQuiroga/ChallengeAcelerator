@@ -8,6 +8,8 @@ import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
 import androidx.navigation.compose.rememberNavController
 import androidx.navigation.navArgument
+import com.google.gson.Gson
+import com.siar.myappacelerator.domain.model.User
 import com.siar.myappacelerator.ui.screens.first.FirstScreen
 import com.siar.myappacelerator.ui.screens.first.FirstViewModel
 import com.siar.myappacelerator.ui.screens.second.SecondScreen
@@ -38,7 +40,7 @@ fun NavGraphBuilder.addFirstScreen(navController: NavHostController){
         FirstScreen(
             uiState = viewModel.uiState
         ){
-            navigateToSecondScreen(navController, it)
+            navigateToSecondScreen(navController, objToJson(it))
         }
     }
 }
@@ -47,16 +49,26 @@ fun NavGraphBuilder.addSecondScreen(){
     composable(
         AppScreens.SecondScreen.route,
         arguments = listOf(
-            navArgument("name", { defaultValue = ""})
+            navArgument("user", { defaultValue = ""})
         )
     ){
-        SecondScreen(
-            hiltViewModel(),
-            it.arguments?.getString("name") ?: "nulo", //nulo is only for test
-        )
+        val args = it.arguments?.getString("user")
+        args?.let {
+            val userArgs = jsonToObj(it)
+            SecondScreen(
+                hiltViewModel(),
+                userArgs
+            )
+        }
+
     }
 }
 
-fun navigateToSecondScreen(navController: NavHostController, name: String){
-    navController.navigate(AppScreens.SecondScreen.createRoute(name))
+fun navigateToSecondScreen(navController: NavHostController, user: String){
+    navController.navigate(AppScreens.SecondScreen.createRoute(user))
 }
+
+
+// utilities
+private fun objToJson(obj: User) = Gson().toJson(obj)
+private fun jsonToObj(json: String) = Gson().fromJson(json, User::class.java)

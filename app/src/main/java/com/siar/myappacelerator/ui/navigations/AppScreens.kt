@@ -7,7 +7,7 @@ package com.siar.myappacelerator.ui.navigations
  *****/
 sealed class AppScreens(val route: String) {
     object FirstScreen: AppScreens("first_screen")
-    object SecondScreen: AppScreens("second_screen?name={name}"){
-        fun createRoute(name: String) = "second_screen?name=$name"
+    object SecondScreen: AppScreens("second_screen?user={user}"){
+        fun createRoute(user: String) = "second_screen?user=$user"
     }
 }

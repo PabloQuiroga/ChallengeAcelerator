@@ -12,6 +12,7 @@ import androidx.compose.ui.res.colorResource
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.sp
 import com.siar.myappacelerator.R
+import com.siar.myappacelerator.domain.model.User
 
 /*****
  * Project: My App Acelerator
@@ -19,11 +20,11 @@ import com.siar.myappacelerator.R
  * Last update: 10/02/2024
  *
  *****/
-@Suppress("UnusedParameter") //only for demo DataStore
+@Suppress("UnusedPrivateProperty") //only for demo DataStore
 @Composable
 fun SecondScreen(
     viewModel: SecondViewModel,
-    name: String
+    user: User
 ) {
     val preferenceName = viewModel.userName.collectAsState()
 
@@ -34,7 +35,7 @@ fun SecondScreen(
         contentAlignment = Alignment.Center
     ) {
         Text(
-            text = "Hola ${preferenceName.value}!",
+            text = "Hola ${user.name}!",
             fontSize = 18.sp,
             fontWeight = FontWeight.Bold
         )
