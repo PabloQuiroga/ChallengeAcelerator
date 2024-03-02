@@ -6,6 +6,7 @@ import androidx.activity.compose.setContent
 import androidx.activity.viewModels
 import androidx.core.splashscreen.SplashScreen.Companion.installSplashScreen
 import com.siar.myappacelerator.ui.navigations.AppNavigation
+import com.siar.myappacelerator.ui.theme.MyAppAceleratorTheme
 import dagger.hilt.android.AndroidEntryPoint
 
 /*****
@@ -26,7 +27,9 @@ class MainActivity : ComponentActivity() {
             }
         }
         setContent {
-            AppNavigation()
+            MyAppAceleratorTheme{
+                AppNavigation()
+            }
         }
     }
 }

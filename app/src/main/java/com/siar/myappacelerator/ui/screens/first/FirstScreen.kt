@@ -6,6 +6,7 @@ import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.foundation.lazy.items
 import androidx.compose.material3.CircularProgressIndicator
+import androidx.compose.material3.Scaffold
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
@@ -15,8 +16,10 @@ import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import com.siar.myappacelerator.domain.model.User
+import com.siar.myappacelerator.ui.components.CustomTopBar
 import com.siar.myappacelerator.ui.components.UserCard
 import com.siar.myappacelerator.ui.theme.MyAppAceleratorTheme
+import com.siar.myappacelerator.util.MockUser
 
 /*****
  * Project: My App Acelerator
@@ -30,39 +33,48 @@ import com.siar.myappacelerator.ui.theme.MyAppAceleratorTheme
 @Composable
 fun FirstScreen(
     uiState: FirstUiState,
-    onItemClick: (User) -> Unit
+    onItemClick: (User) -> Unit,
 ) {
-    Box(
-        modifier = Modifier
-            .fillMaxSize(),
-        contentAlignment = Alignment.Center
-    ) {
-        when(uiState){
-            is FirstUiState.Loading -> {
-                ShowLoader()
-            }
-            is FirstUiState.Error -> {
-                ShowError(uiState.error)
-            }
+    Scaffold(
+        topBar = {
+            CustomTopBar()
+        },
+        content = {
+            Box(
+                modifier = Modifier
+                    .fillMaxSize()
+                    .padding(it),
+                contentAlignment = Alignment.Center,
+            ) {
+                when (uiState) {
+                    is FirstUiState.Loading -> {
+                        ShowLoader()
+                    }
 
-            is FirstUiState.Success -> {
-                ShowSuccessContent(
-                    userList = uiState.users,
-                    onItemClick = onItemClick
-                )
+                    is FirstUiState.Error -> {
+                        ShowError(uiState.error)
+                    }
+
+                    is FirstUiState.Success -> {
+                        ShowSuccessContent(
+                            userList = uiState.users,
+                            onItemClick = onItemClick
+                        )
+                    }
+                }
             }
         }
-    }
+    )
 }
 
 @Composable
 fun ShowSuccessContent(
     userList: List<User>,
-    onItemClick: (User) -> Unit
-){
+    onItemClick: (User) -> Unit,
+) {
     LazyColumn(
         content = {
-            items(userList){
+            items(userList) {
                 UserCard(
                     user = it,
                     onItemClick = onItemClick
@@ -73,21 +85,23 @@ fun ShowSuccessContent(
 }
 
 @Composable
-fun ShowLoader(){
-    Box(modifier = Modifier
-        .fillMaxSize(),
+fun ShowLoader() {
+    Box(
+        modifier = Modifier
+            .fillMaxSize(),
         contentAlignment = Alignment.Center
-    ){
+    ) {
         CircularProgressIndicator()
     }
 }
 
 @Composable
-fun ShowError(message: String){
-    Box(modifier = Modifier
-        .fillMaxSize(),
+fun ShowError(message: String) {
+    Box(
+        modifier = Modifier
+            .fillMaxSize(),
         contentAlignment = Alignment.Center
-    ){
+    ) {
         Text(
             text = message,
             modifier = Modifier.padding(top = 16.dp),
@@ -100,23 +114,25 @@ fun ShowError(message: String){
 
 @Preview(showSystemUi = true)
 @Composable
-fun ShowSuccessPreview(){
-    ShowSuccessContent(
-        userList = emptyList(),
-        onItemClick = {}
-    )
+fun ShowSuccessPreview() {
+    MyAppAceleratorTheme(darkTheme = true) {
+        ShowSuccessContent(
+            userList = listOf(MockUser.mockUser),
+            onItemClick = {}
+        )
+    }
 }
 
 @Preview(showBackground = true)
 @Composable
-fun ShowErrorPreview(){
+fun ShowErrorPreview() {
     ShowError("Error de internet")
 }
 
 @Preview
 @Composable
-fun FirstScreenPreview(){
+fun FirstScreenPreview() {
     MyAppAceleratorTheme {
-        FirstScreen(uiState = FirstUiState.Loading){}
+        FirstScreen(uiState = FirstUiState.Loading) {}
     }
 }

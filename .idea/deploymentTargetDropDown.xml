@@ -2,7 +2,13 @@
 <project version="4">
   <component name="deploymentTargetDropDown">
     <value>
+      <entry key="CustomTopBarPreview">
+        <State />
+      </entry>
       <entry key="ShowPregressBar">
+        <State />
+      </entry>
+      <entry key="UserCardPreview">
         <State />
       </entry>
       <entry key="app">
