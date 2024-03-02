@@ -28,7 +28,7 @@ fun AppNavigation() {
         startDestination = AppScreens.FirstScreen.route
     ){
         addFirstScreen(navController)
-        addSecondScreen()
+        addSecondScreen(navController)
     }
 }
 
@@ -45,7 +45,7 @@ fun NavGraphBuilder.addFirstScreen(navController: NavHostController){
     }
 }
 
-fun NavGraphBuilder.addSecondScreen(){
+fun NavGraphBuilder.addSecondScreen(navController: NavHostController){
     composable(
         AppScreens.SecondScreen.route,
         arguments = listOf(
@@ -57,7 +57,8 @@ fun NavGraphBuilder.addSecondScreen(){
             val userArgs = jsonToObj(it)
             SecondScreen(
                 hiltViewModel(),
-                userArgs
+                userArgs,
+                onBackClick = { navController.popBackStack() }
             )
         }
 

@@ -5,6 +5,10 @@ import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
+import androidx.compose.material.icons.Icons
+import androidx.compose.material.icons.filled.ArrowBack
+import androidx.compose.material3.Icon
+import androidx.compose.material3.IconButton
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
@@ -25,24 +29,41 @@ import com.siar.myappacelerator.R
  *
  *****/
 @Composable
-fun CustomTopBar() {
+fun CustomTopBar(
+    title: String,
+    backIcon: Boolean = false,
+    onBackClick: () -> Unit = {}
+) {
     Row(
         modifier = Modifier
             .fillMaxWidth(),
         verticalAlignment = Alignment.CenterVertically,
     ) {
-        Image(
-            modifier = Modifier
-                .size(dimensionResource(id = R.dimen.image_size))
-                .padding(dimensionResource(id = R.dimen.padding_small)),
-            painter = painterResource(R.drawable.q_icon),
-            contentDescription = null
-        )
+        if (backIcon){
+            IconButton(onClick = { onBackClick() }) {
+                Icon(
+                    imageVector = Icons.Filled.ArrowBack,
+                    contentDescription = "backHandler icon",
+                    modifier = Modifier
+                        .size(dimensionResource(id = R.dimen.image_size))
+                        .padding(dimensionResource(id = R.dimen.padding_small))
+                )
+            }
+        } else {
+            Image(
+                modifier = Modifier
+                    .size(dimensionResource(id = R.dimen.image_size))
+                    .padding(dimensionResource(id = R.dimen.padding_small)),
+                painter = painterResource(R.drawable.q_icon),
+                contentDescription = null
+            )
+        }
+
         Text(
             modifier = Modifier
                 .fillMaxWidth()
                 .padding(end = 16.dp),
-            text = stringResource(R.string.app_name),
+            text = title,
             style = MaterialTheme.typography.titleLarge,
             textAlign = TextAlign.Center
         )
@@ -52,5 +73,8 @@ fun CustomTopBar() {
 @Preview(showSystemUi = true)
 @Composable
 fun CustomTopBarPreview(){
-    CustomTopBar()
+    CustomTopBar(
+        title = stringResource(R.string.app_name),
+        backIcon = true
+    ){}
 }

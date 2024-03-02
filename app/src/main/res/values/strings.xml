@@ -1,4 +1,5 @@
 <resources>
     <string name="app_name">App Acelerator</string>
     <string name="title_activity_main">MainActivity</string>
+    <string name="title_details">Detalles</string>
 </resources>
